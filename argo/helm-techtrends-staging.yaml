@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://github.com/anjoGF/TechTrends.git'
     targetRevision: HEAD
-    path: kubernetes/helm
+    path: helm/
     helm:
       valueFiles:
         - values-staging.yaml
