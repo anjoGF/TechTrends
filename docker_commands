@@ -1,17 +1,17 @@
-# Build the Docker image
-docker build -t techtrends .
-
-# Run the Docker container
-docker run -d -p 7111:3111 techtrends
-
-# List all Docker containers
-docker ps -a
-
-docker run -d -p 7111:3111 techtrends
-
-# List running Docker containers
-docker ps
-
-docker logs charming_yalow > docker_commands
-
-cat docker_commands
+ * Serving Flask app 'app' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.17.0.2:3111/ (Press CTRL+C to quit)
+INFO:werkzeug:136.55.166.98 - - [04/Nov/2023 20:57:18] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:136.55.166.98 - - [04/Nov/2023 20:57:18] "GET /static/css/main.css HTTP/1.1" 200 -
+INFO:werkzeug:136.55.166.98 - - [04/Nov/2023 20:57:18] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:52.167.144.55 - - [04/Nov/2023 21:02:13] "[33mGET /robots.txt HTTP/1.1[0m" 404 -
+INFO:werkzeug:40.77.167.38 - - [04/Nov/2023 21:02:18] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:40.77.189.116 - - [04/Nov/2023 21:02:26] "GET /static/css/main.css HTTP/1.1" 200 -
+INFO:app:Article "2020 CNCF Annual Report" retrieved!
+INFO:werkzeug:136.55.166.98 - - [04/Nov/2023 21:02:59] "GET /1 HTTP/1.1" 200 -
+INFO:werkzeug:136.55.166.98 - - [04/Nov/2023 21:02:59] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
