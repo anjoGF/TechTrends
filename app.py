@@ -3,14 +3,24 @@ from flask import Flask, jsonify, json, render_template, request, url_for, redir
 from werkzeug.exceptions import abort
 import logging
 import sys
+import os
 
-logging.basicConfig(
-    level=logging.DEBUG,
-    handlers=[
-        logging.StreamHandler(sys.stdout),
-        logging.StreamHandler(sys.stderr)
-    ]
-)
+def initialize_logger():
+    log_level = os.getenv("LOGLEVEL", "DEBUG").upper()
+    log_level = (
+        getattr(logging, log_level)
+        if log_level in ["CRITICAL", "DEBUG", "ERROR", "INFO", "WARNING",]
+        else logging.DEBUG
+    )
+
+    logging.basicConfig(
+        format='%(levelname)s:%(name)s:%(asctime)s, %(message)s',
+        level=log_level,
+        handlers=[
+            logging.StreamHandler(sys.stdout),
+            logging.StreamHandler(sys.stderr)
+        ]
+    )
 
 db_connection_count = 0
 
@@ -49,7 +59,7 @@ def index():
 def post(post_id):
     post = get_post(post_id)
     if post is None:
-        app.logger.info('A non-existing article is accessed and a 404 page is returned.')
+        app.logger.error('A non-existing article is accessed and a 404 page is returned.')  # Changed to error
         return render_template('404.html'), 404
     else:
         app.logger.info('Article "%s" retrieved!', post['title'])
@@ -102,7 +112,6 @@ def create():
 
     return render_template('create.html')
 
-
-# start the application on port 3111
 if __name__ == "__main__":
-   app.run(host='0.0.0.0', port='3111')
+    initialize_logger()  
+    app.run(host='0.0.0.0', port='3111')
